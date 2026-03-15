@@ -1,6 +1,6 @@
 # 💬 Real-Time Chat (WebSocket)
 
-![preview](./preview.gif)
+![preview](./frontend/images/preview.gif)
 
 Um pequeno chat em tempo real feito com **Node.js** e **WebSockets**.
 A aplicação permite que vários usuários se conectem e troquem mensagens instantaneamente diretamente pelo navegador.
