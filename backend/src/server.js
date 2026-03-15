@@ -1,17 +1,39 @@
 const { WebSocketServer } = require("ws")
-const dotenv = require("dotenv")
 
-dotenv.config()
+const wss = new WebSocketServer({ port: 8080 })
 
-const wss = new WebSocketServer({ port: process.env.PORT || 8080 })
+function sendOnlineCount() {
+    const online = wss.clients.size
+
+    const message = JSON.stringify({
+        type: "online",
+        count: online
+    })
+
+    wss.clients.forEach(client => {
+        client.send(message)
+    })
+}
 
 wss.on("connection", (ws) => {
-    console.log("Client connected")
-    ws.on("error", console.error)
+
+    console.log("Novo cliente conectado")
+
+    sendOnlineCount()
 
     ws.on("message", (data) => {
-        console.log(data.toString())
-        wss.clients.forEach((client) => client.send(data.toString()))
+
+        wss.clients.forEach(client => {
+            client.send(data.toString())
+        })
 
     })
-} )
+
+    ws.on("close", () => {
+
+        console.log("Cliente saiu")
+
+        sendOnlineCount()
+
+    })
+})

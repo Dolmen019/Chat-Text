@@ -155,3 +155,21 @@ body {
     font-weight: 700;
     color: cornflowerblue;
 }
+
+.message__system {
+    align-self: center;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.chat__online {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: #4caf50;
+    font-weight: 600;
+}
